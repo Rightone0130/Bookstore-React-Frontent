@@ -41,7 +41,7 @@ export default function Navbar({ loggedIn }: LoggedIn) {
     // Perform your login logic here, and when successful, navigate to the RootLayout
     // Example: You can check user credentials, and if they are valid, navigate to the RootLayout
     if (true) {
-      navigate('/layout');
+      // navigate('/layout');
     }
   }
   

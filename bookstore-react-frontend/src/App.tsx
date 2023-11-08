@@ -51,10 +51,12 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Dashboard />} />
+      
+      <Route index element={<Dashboard />}/>
       <Route path="create" element={<Create />} action={createAction}/>
       <Route path="profile" element={<Profile />} />
       <Route path="/updateBook" Component={UpdateBook} />
+      
     </Route>
   )
 )

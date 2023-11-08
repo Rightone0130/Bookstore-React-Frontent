@@ -1,13 +1,26 @@
-import { Grid, GridItem } from "@chakra-ui/react"
+import { Grid, GridItem, Box } from "@chakra-ui/react"
 import { Outlet } from "react-router-dom"
 
 // components
 import Navbar from "./components/Navbar"
 import Sidebar from "./components/Sidebar"
+import LandingPage from "./pages/LandingPage"
+import { useAuth0 } from "@auth0/auth0-react"
 
 export default function RootLayout() {
-  return (
-    <Grid templateColumns="repeat(6, 1fr)" bg="gray.50">
+
+
+  const { isAuthenticated } = useAuth0();
+
+
+  return (<>
+
+
+   <Grid display={isAuthenticated ? "none" : "grid"} >
+   <LandingPage />
+
+   </Grid>
+    <Grid display={isAuthenticated ? "grid" : "none"} templateColumns="repeat(6, 1fr)" bg="gray.50">
       {/* sidebar */}
       <GridItem
         as="aside"
@@ -25,9 +38,10 @@ export default function RootLayout() {
         colSpan={{ base: 6, lg: 4, xl: 5 }} 
         p="40px"
       >
-        <Navbar loggedIn />
+        <Navbar loggedIn={isAuthenticated} />
         <Outlet />
       </GridItem>
     </Grid>
+    </>
   )
 }

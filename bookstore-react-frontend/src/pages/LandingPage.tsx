@@ -26,7 +26,7 @@ function LandingPage() {
   return (
 
 
-    <Box display={"none"}> 
+    <Box > 
         <Grid as="main"
         p="10px" mb="0" pl="60px" pr="60px">
         <Navbar loggedIn ={false} />
