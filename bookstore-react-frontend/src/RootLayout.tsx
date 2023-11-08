@@ -25,7 +25,7 @@ export default function RootLayout() {
         colSpan={{ base: 6, lg: 4, xl: 5 }} 
         p="40px"
       >
-        <Navbar />
+        <Navbar loggedIn />
         <Outlet />
       </GridItem>
     </Grid>

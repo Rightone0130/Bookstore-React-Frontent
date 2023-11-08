@@ -20,7 +20,7 @@ function Dashboard() {
   return (
     <SimpleGrid spacing={10} minChildWidth={300}>
       {data?.books.map((book) => (
-        <Cards id={book.id} name={book.name} description={book.description}/>
+        <Cards key={book.id}  id={book.id} name={book.name} description={book.description}/>
           ))}
     </SimpleGrid>
   )

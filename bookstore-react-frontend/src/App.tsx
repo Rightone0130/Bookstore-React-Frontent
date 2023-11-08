@@ -18,9 +18,12 @@ import { onError } from "@apollo/client/link/error";
 
 // layouts and pages
 import RootLayout from './RootLayout'
-import Create, { createAction } from './forms/Create'
+import Create, { createAction } from './forms/CreateBook'
 import Profile from './pages/Profile'
 import Dashboard from './pages/Dashbord';
+import LandingPage from './pages/LandingPage';
+import UpdateBook from './forms/UpdateBook';
+
 
 
 
@@ -46,10 +49,12 @@ const client = new ApolloClient({
 // router and routes
 const router = createBrowserRouter(
   createRoutesFromElements(
+    
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Dashboard />}/>
-      <Route path="create" element={<Create />} action={createAction} />
+      <Route index element={<Dashboard />} />
+      <Route path="create" element={<Create />} action={createAction}/>
       <Route path="profile" element={<Profile />} />
+      <Route path="/updateBook" Component={UpdateBook} />
     </Route>
   )
 )
@@ -58,7 +63,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
     <RouterProvider router={router} />
-    
+    {/* <LandingPage/> */}
     </ApolloProvider>
   );
 

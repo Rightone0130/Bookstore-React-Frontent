@@ -21,7 +21,7 @@ import {
       <Tabs mt="40px" p="20px" variant="enclosed" colorScheme="purple">
         <TabList>
           <Tab _selected={{ color: 'white', bg: 'purple.400' }}>Account Info</Tab>
-          <Tab _selected={{ color: 'white', bg: 'purple.400' }}>Task History</Tab>
+          <Tab _selected={{ color: 'white', bg: 'purple.400' }}>Book History</Tab>
         </TabList>
   
         <TabPanels py="10px">
@@ -29,7 +29,7 @@ import {
             <List spacing={4}>
               <ListItem>
                 <ListIcon as={EmailIcon} />
-                Email: mario@netninja.dev
+                Email: richardayilara@gmail.com
               </ListItem>
               <ListItem>
                 <ListIcon as={ChatIcon} />

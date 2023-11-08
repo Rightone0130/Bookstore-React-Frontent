@@ -15,7 +15,7 @@ export default function Sidebar() {
       <ListItem>
         <NavLink to="create">
           <ListIcon as={EditIcon} color="white" />
-          New Task
+          New Book
         </NavLink>
       </ListItem>
       <ListItem>
