@@ -21,15 +21,14 @@ import RootLayout from './RootLayout'
 import Create, { createAction } from './forms/CreateBook'
 import Profile from './pages/Profile'
 import Dashboard from './pages/Dashbord';
-import LandingPage from './pages/LandingPage';
 import UpdateBook from './forms/UpdateBook';
 
 
 
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, path }) => {
+    graphQLErrors.map(({ message}) => {
       alert(`Graphql error ${message}`);
     });
   }
@@ -65,7 +64,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
     <RouterProvider router={router} />
-    {/* <LandingPage/> */}
     </ApolloProvider>
   );
 

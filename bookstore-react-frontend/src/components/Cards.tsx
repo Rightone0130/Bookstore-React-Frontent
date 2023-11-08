@@ -1,4 +1,3 @@
-import React from "react";
 import { EditIcon, ViewIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -26,7 +25,9 @@ interface CardProps {
 function Cards({ id, name, description }: CardProps) {
   const handleUpdateClick = () => {
     // Construct the URL with parameters and navigate
-    const url = `/updateBook?id=${id}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}`;
+    const url = `/updateBook?id=${id}&name=${encodeURIComponent(
+      name
+    )}&description=${encodeURIComponent(description)}`;
     window.location.href = url;
   };
 
@@ -38,7 +39,9 @@ function Cards({ id, name, description }: CardProps) {
             <Avatar name={""} src={""} />
           </Box>
           <Box>
-            <Heading as="h3" size="sm">{name}</Heading>
+            <Heading as="h3" size="sm">
+              {name}
+            </Heading>
             <Text>by {"author"}</Text>
           </Box>
         </Flex>
@@ -52,11 +55,19 @@ function Cards({ id, name, description }: CardProps) {
 
       <CardFooter>
         <HStack>
-          <Button variant="ghost" leftIcon={<ViewIcon />}>View</Button>
-          <Link to={`/updateBook?id=${id}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}`}>
-             <Button variant="ghost" leftIcon={<EditIcon />}>Update</Button>
-           </Link>
-           <DeleteBookButton id={id}/>
+          <Button variant="ghost" leftIcon={<ViewIcon />}>
+            View
+          </Button>
+          <Link
+            to={`/updateBook?id=${id}&name=${encodeURIComponent(
+              name
+            )}&description=${encodeURIComponent(description)}`}
+          >
+            <Button variant="ghost" leftIcon={<EditIcon />}>
+              Update
+            </Button>
+          </Link>
+          <DeleteBookButton id={id} />
         </HStack>
       </CardFooter>
     </Card>

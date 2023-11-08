@@ -1,38 +1,33 @@
-import { useMutation } from '@apollo/client';
-import { 
-  Box, 
-  FormControl, 
-  FormLabel, 
-  FormHelperText, 
-  Input, 
-  Textarea, 
+import { useMutation } from "@apollo/client";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Input,
+  Textarea,
   Button,
-  Spacer, 
-} from '@chakra-ui/react'
-import { useState } from 'react';
-import { Form, redirect, useLocation, useNavigate } from 'react-router-dom'
-import { UPDATE_BOOK_MUTATION } from '../GraphQl/Mutations';
+  Spacer,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import { Form, redirect, useLocation, useNavigate } from "react-router-dom";
+import { UPDATE_BOOK_MUTATION } from "../GraphQl/Mutations";
 
-
-
-
-  export default function UpdateBook() {
-
-    //transfers object from from last use location 
+export default function UpdateBook() {
+  //transfers object from from last use location
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const ids = params.get("id");
   const names = params.get("name");
   const descriptions = params.get("description");
 
-
-    //maps the input value to be updated
+  //maps the input value to be updated
   const [name, setBookName] = useState(names || ""); // Use the provided names or initialize as an empty string
   const [description, setDescription] = useState(descriptions || ""); // Use the provided descriptions or initialize as an empty string
   const [userId, setUserId] = useState("");
 
   const [updateBook, { error }] = useMutation(UPDATE_BOOK_MUTATION);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const update = () => {
     updateBook({
@@ -40,10 +35,10 @@ import { UPDATE_BOOK_MUTATION } from '../GraphQl/Mutations';
         name: name,
         description: description,
         userId: 1,
-        id: parseInt(ids || '')
+        id: parseInt(ids || ""),
       },
     });
-    navigate('/');
+    navigate("/");
     if (error) {
       console.log(error);
     }
@@ -59,7 +54,7 @@ import { UPDATE_BOOK_MUTATION } from '../GraphQl/Mutations';
           <Input
             type="text"
             name="title"
-            value={name || ''} // Set the input value to the "name" state
+            value={name || ""} // Set the input value to the "name" state
             onChange={(e) => {
               setBookName(e.target.value);
             }}
@@ -72,14 +67,16 @@ import { UPDATE_BOOK_MUTATION } from '../GraphQl/Mutations';
           <Textarea
             placeholder="Enter a detailed description for your book.."
             name="description"
-            value={description || ''} // Set the input value to the "description" state
+            value={description || ""} // Set the input value to the "description" state
             onChange={(e) => {
               setDescription(e.target.value);
             }}
           />
         </FormControl>
         {/* <Button  type="submit">submit</Button> */}
-        <Button onClick={update} type="submit">submit</Button>
+        <Button onClick={update} type="submit">
+          submit
+        </Button>
       </Form>
     </Box>
   );

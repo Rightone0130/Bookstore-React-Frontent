@@ -1,18 +1,17 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { UnlockIcon } from "@chakra-ui/icons";
-import { 
-  Flex, 
-  Heading, 
-  Text, 
-  Button, 
-  Spacer, 
-  HStack, 
-  useToast, 
+import {
+  Flex,
+  Heading,
+  Text,
+  Button,
+  Spacer,
+  HStack,
+  useToast,
   AvatarBadge,
-  Avatar
+  Avatar,
+  CircularProgress,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom"
 
 interface LoggedIn {
   loggedIn: boolean;
@@ -20,61 +19,68 @@ interface LoggedIn {
 
 export default function Navbar({ loggedIn }: LoggedIn) {
   const toast = useToast();
-  const { loginWithRedirect, logout } = useAuth0();
+  const { loginWithRedirect, logout, user } = useAuth0(); // Add 'user' from Auth0
 
   const handleLogout = () => {
     logout({ logoutParams: { returnTo: window.location.origin } });
     toast({
-      title: 'Logged out.',
+      title: "Logged out.",
       description: "Successfully logged out",
       duration: 10000,
       isClosable: true,
-      position: 'top',
-      status: 'success',
+      position: "top",
+      status: "success",
       icon: <UnlockIcon />,
     });
+    stat();
   };
-  const navigate = useNavigate();
+
 
   const handleLogin = () => {
-    loginWithRedirect()
-    // Perform your login logic here, and when successful, navigate to the RootLayout
-    // Example: You can check user credentials, and if they are valid, navigate to the RootLayout
-    if (true) {
-      // navigate('/layout');
-    }
-  }
-  
+    loginWithRedirect();
+  };
 
   return (
     <Flex as="nav" p="10px" mb="60px" alignItems="center">
-      <Heading as="h1" fontSize="1.5em">Book shelf</Heading>
+      <Heading as="h1" fontSize="1.5em">
+        Book shelf
+      </Heading>
       <Spacer />
-      <HStack spacing="20px"> 
+      <HStack spacing="20px">
         {loggedIn ? (
           <>
-            <Avatar name="Admin" src="/img/admin.png">
+            <Avatar
+              name={user?.name || "User"}
+              src={user?.picture || "/img/default-avatar.png"}
+            >
+              {/* You can replace "/img/default-avatar.png" with a default avatar image */}
               <AvatarBadge width="1.3em" bg="teal.500">
-                <Text fontSize="xs" color="white">3</Text>
+                <Text fontSize="xs" color="white">
+                  3
+                </Text>
               </AvatarBadge>
             </Avatar>
-            <Text>admin@example.com</Text>
-            <Button
-              colorScheme="purple"
-              onClick={handleLogout} 
-            >
+            <Text>{user?.email || "N/A"}</Text>
+            <Button colorScheme="purple" onClick={handleLogout}>
               Logout
             </Button>
           </>
         ) : (
-          <Button
-            colorScheme="purple"
-            onClick={handleLogin}
-          >
+          <Button colorScheme="purple" onClick={handleLogin}>
             Login
           </Button>
         )}
       </HStack>
     </Flex>
+  );
+}
+function stat() {
+  return (
+    <CircularProgress
+      isIndeterminate
+      color="green.300"
+      size="160px"
+      thickness="5px"
+    />
   );
 }

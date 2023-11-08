@@ -1,15 +1,13 @@
-import React from "react";
 import { useMutation } from "@apollo/client";
 import { REMOVE_BOOK_MUTATION } from "../GraphQl/Mutations"; // Import the mutation you defined earlier
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Button } from "@chakra-ui/react";
 
-
-interface props{
-    id: string
+interface props {
+  id: string;
 }
 
-const DeleteBookButton = ({ id :bookId }: props) => {
+const DeleteBookButton = ({ id: bookId }: props) => {
   const [removeBook] = useMutation(REMOVE_BOOK_MUTATION, {
     onError: (error) => {
       // Handle any errors that occur during the mutation
@@ -30,7 +28,9 @@ const DeleteBookButton = ({ id :bookId }: props) => {
   };
 
   return (
-    <Button onClick={handleDelete} variant="ghost" leftIcon={<DeleteIcon />}>Delete</Button>
+    <Button onClick={handleDelete} variant="ghost" leftIcon={<DeleteIcon />}>
+      Delete
+    </Button>
   );
 };
 
