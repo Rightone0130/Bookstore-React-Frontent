@@ -7,10 +7,9 @@ import {
   Input,
   Textarea,
   Button,
-  Spacer,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Form, redirect, useLocation, useNavigate } from "react-router-dom";
+import { Form, useLocation, useNavigate } from "react-router-dom";
 import { UPDATE_BOOK_MUTATION } from "../GraphQl/Mutations";
 
 export default function UpdateBook() {
@@ -24,7 +23,6 @@ export default function UpdateBook() {
   //maps the input value to be updated
   const [name, setBookName] = useState(names || ""); // Use the provided names or initialize as an empty string
   const [description, setDescription] = useState(descriptions || ""); // Use the provided descriptions or initialize as an empty string
-  const [userId, setUserId] = useState("");
 
   const [updateBook, { error }] = useMutation(UPDATE_BOOK_MUTATION);
   const navigate = useNavigate();
@@ -73,7 +71,6 @@ export default function UpdateBook() {
             }}
           />
         </FormControl>
-        {/* <Button  type="submit">submit</Button> */}
         <Button onClick={update} type="submit">
           submit
         </Button>

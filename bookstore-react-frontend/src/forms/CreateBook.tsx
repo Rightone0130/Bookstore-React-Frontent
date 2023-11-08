@@ -15,7 +15,6 @@ import { CREATE_BOOK_MUTATION } from "../GraphQl/Mutations";
 export default function CreateBook() {
   const [name, setBookName] = useState("");
   const [description, setDescription] = useState("");
-  const [userId, setUserId] = useState("");
 
   const [createBook, { error }] = useMutation(CREATE_BOOK_MUTATION);
 

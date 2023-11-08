@@ -23,14 +23,6 @@ interface CardProps {
 }
 
 function Cards({ id, name, description }: CardProps) {
-  const handleUpdateClick = () => {
-    // Construct the URL with parameters and navigate
-    const url = `/updateBook?id=${id}&name=${encodeURIComponent(
-      name
-    )}&description=${encodeURIComponent(description)}`;
-    window.location.href = url;
-  };
-
   return (
     <Card key={id} borderTop="8px" borderColor="purple.400" bg="white">
       <CardHeader color="gray.700">
